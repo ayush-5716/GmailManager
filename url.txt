@@ -1,0 +1,1 @@
+https://accounts.google.com/o/oauth2/auth?access_type=online&client_id=894377457803-5e3ljlr0kd1lp65mn6e51k7av0h07rpv.apps.googleusercontent.com&redirect_uri=http://localhost:8888/Callback&response_type=code&scope=https://www.googleapis.com/auth/gmail.readonly%20https://www.googleapis.com/auth/gmail.send%20https://mail.google.com/

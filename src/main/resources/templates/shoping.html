@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Website</title>
+    <script th:inline="javascript">
+
+        function sendPostRequest(product) {
+            document.getElementById(product.name).style.backgroundColor = 'red';
+            document.getElementById(product.name).disabled = true;
+            document.getElementById(product.name).innerHTML = 'Deleted!';
+            document.getElementById(product.name).style.color = 'white';
+            console.log("reached here");
+            console.log(product.name)
+            // Create a new XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            //   var l1 = '/deleteMails/';
+
+            //   var l2 = l1.concat(product);
+            // Configure it: POST-request, URL, async
+            xhr.open('POST', "/deleteMails", true);
+
+            // Set the Content-Type header
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+
+            // Define what happens on successful data submission
+            xhr.onload = function () {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    // Request was successful, do something with the response
+                    console.log('Request successful', xhr.responseText);
+                } else {
+                    // Request failed
+                    console.error('Request failed', xhr.statusText);
+                }
+            };
+
+            // Define what happens in case of an error
+            xhr.onerror = function () {
+                console.error('Request failed');
+            };
+
+            // Convert data to JSON format
+            var jsonData = JSON.stringify(product);
+
+            console.log(jsonData)
+
+            xhr.send(jsonData);
+
+            // Send the request with the JSON data
+
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: left;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: 4rem 20rem 3fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-areas:
+                "a b c d e f g "
+            ;
+            padding: 0px;
+            padding-left: 20px;
+            height: 60px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        #btn11 {
+            color: white;
+            background-color: red;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        #btn11:on {
+            background-color: gray;
+            /* Change to any color you prefer */
+            pointer-events: none;
+            /* Disable button */
+        }
+
+
+
+
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .product {
+
+            overflow: initial;
+            display: absolute;
+            place-items: center;
+            border: 5px solid #ccc;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            height: 170px;
+            background-image: url("bg4.jpg");
+
+
+        }
+
+        .product:hover {
+            transform: scale(1.05);
+        }
+
+        .product img {
+            max-width: 100%;
+            height: 100px;
+        }
+
+        .product h2 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .product t {
+            font-size: 40px;
+        }
+
+        .product p {
+            margin: 10px 0;
+            font-size: 25px;
+            color: #62491a;
+            /* 666 */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logon.png" style="width: 45px; height: 45px; grid-area: a; border-radius: 30px;">
+        <div style="height: 100%; width: 100%; display: flex; align-items: center; justify-content: start;">
+            <h1 style="grid-area: b;font-size: 30px;">Gmail Manager</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product" th:each="product : ${products}">
+            <img src="iconMail.png">
+            <h2> <span th:text="${product.name}"> </span> </h2>
+            <p><span th:text="${product.count}"> </span></p>
+            <button style="border-radius: 5px;" th:id="${product.name}" th:onclick="sendPostRequest([[${product}]])">Delete!</button>
+            <!-- <form action="#" th:action="@{/deleteMails/{name}(name=${product.name})}" method="post">
+                <input type="submit" value="Delete!" />
+            </form> -->
+
+        </div>
+        <!-- Add more product tiles as needed -->
+    </div>
+</body>
+
+</html>
