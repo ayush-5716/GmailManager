@@ -31,6 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+.great
+.sec2
 **/src/resources/great.json
 **/src/resources/sec2.json
 
