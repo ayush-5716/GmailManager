@@ -15,11 +15,11 @@ public class GmailmanagerApplication {
 		SpringApplication.run(GmailmanagerApplication.class, args);
 		/*
 		 * Press fetch
-		 * Now these are all your messages sorted by order of counts. Select any one sender  name to delete
+		 * Now these are all your messages sorted by order of counts. Select any one
+		 * sender name to delete
 		 * Fetch all message IDs linked to this sender name
 		 */
 
-		
 	}
 
 }

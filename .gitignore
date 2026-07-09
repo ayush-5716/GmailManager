@@ -36,3 +36,4 @@ build/
 **/src/resources/great.json
 **/src/resources/sec2.json
 
+tokens/StoredCredential
